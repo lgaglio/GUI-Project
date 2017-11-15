@@ -373,7 +373,7 @@ def Debuger_Once( event ):
 	root.bind( "<K>", DeathTrans )
 	debuggerOn = True
 	print( 'You have now entered debug mode.\nTo exit press B again.' )
-	print( 'Extra controls in Debug Mode: F to skip to the next Frame and coords of objects.\nL for more lives.\nK for instant death' )
+	print( 'Extra controls in Debug Mode: F to skip to the next Frame and coords of EngineComponents.\nL for more lives.\nK for instant death' )
 
 
 def Pause( event ):
