@@ -36,4 +36,6 @@
 ehthumbs.db
 Thumbs.db
 
-*.xml
+# IDEA IDE Engine Project Settings folder #
+###########################################
+.idea/
