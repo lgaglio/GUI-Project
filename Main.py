@@ -375,19 +375,6 @@ def Debuger_Once( event ):
 	print( 'You have now entered debug mode.\nTo exit press B again.' )
 	print( 'Extra controls in Debug Mode: F to skip to the next Frame and coords of objects.\nL for more lives.\nK for instant death' )
 
-else:
-root.bind( "<space>", Pause )
-if lives > 6:
-	lives = 1
-	liveText.config( text = 'Lives: ' + str( lives ) )
-debuggerOn = False
-animate()
-root.unbind( "<F>" )
-if lives > 0:
-	root.unbind( "<L>" )
-root.unbind( "<L>" )
-root.unbind( "<K>" )
-
 
 def Pause( event ):
 	global pauseOn
