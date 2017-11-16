@@ -6,4 +6,4 @@ class Hitbox2D:
 
 	def __init__(self, game_object):
 		if isinstance(game_object, EngineComponents.gameobject.GameObject):
-			# TODO: Add code here.
+			attachedGameObject = game_object
