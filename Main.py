@@ -6,49 +6,57 @@
 from GameFiles.EngineScripts.ContinueMover import *
 from GameFiles.EngineScripts.Frogger import *
 
-WHITE = (255, 255, 255)
 
-status = pygame.init()
+class Main:
+	WHITE = (255, 255, 255)
 
-if status[1] > 0:
-	print("Unsuccessful launch.")
-	exit(-1)
-else:
-	print("Successful.")
+	def __init__(self):
 
-game_display = pygame.display.set_mode((800, 600))
+		status = pygame.init()
 
-pygame.display.set_caption("Frogger")
-
-pygame.display.update()
-
-exit_game = False
-
-frogger = Frogger(game_display)
-
-objects = [ContinueMover(game_display, 1, 50)]
-
-while not exit_game:
-
-	game_display.fill(WHITE)
-
-	event_list = []
-
-	for event in pygame.event.get():
-
-		if event.type == pygame.QUIT:
-			exit_game = True
+		if status[1] > 0:
+			print("Unsuccessful launch.")
+			exit(-1)
 		else:
-			event_list.append(event)
+			print("Successful.")
 
-	frogger.update(event_list)
+		self.game_display = pygame.display.set_mode((800, 600))
 
-	for game_object in objects:
-		game_object.update()
+		pygame.display.set_caption("Frogger")
 
-	pygame.display.update()
+		pygame.display.update()
 
-	Time.update()
+		self.exit_game = False
 
-pygame.quit()
-quit(0)
+		self.objects = [Frogger(self.game_display, self), ContinueMover(self.game_display, 1, 50)]
+
+		self.event_list = []
+
+	def run(self):
+		while not self.exit_game:
+
+			self.game_display.fill(self.WHITE)
+
+			for event in pygame.event.get():
+
+				if event.type == pygame.QUIT:
+					self.exit_game = True
+				else:
+					self.event_list.append(event)
+
+			for game_object in self.objects:
+				game_object.update()
+
+			pygame.display.update()
+
+			Time.update()
+
+		pygame.quit()
+
+
+if __name__ == '__main__':
+	main_class = Main()
+
+	main_class.run()
+
+	quit(0)
