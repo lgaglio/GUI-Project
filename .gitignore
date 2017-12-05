@@ -39,3 +39,4 @@ Thumbs.db
 # IDEA IDE Engine Project Settings folder #
 ###########################################
 .idea/
+*.pyc
