@@ -3,8 +3,10 @@
 #  Search for pygame, and install the latest version. For my project team mates, follow this tutorial:
 # https://www.youtube.com/watch?v=K5F-aGDIYaM&index=1&list=PL6gx4Cwl9DGAjkwJocj7vlc_mFU-4wXJq
 
-import pygame
-from EngineScripts.Frogger import *
+from GameFiles.EngineScripts.ContinueMover import *
+from GameFiles.EngineScripts.Frogger import *
+
+WHITE = (255, 255, 255)
 
 status = pygame.init()
 
@@ -22,18 +24,31 @@ pygame.display.update()
 
 exit_game = False
 
-frog = Frogger()
+frogger = Frogger(game_display)
 
-objects = [frog]
+objects = [ContinueMover(game_display, 1, 50)]
 
 while not exit_game:
+
+	game_display.fill(WHITE)
+
+	event_list = []
+
 	for event in pygame.event.get():
-		print(event)
 
 		if event.type == pygame.QUIT:
 			exit_game = True
+		else:
+			event_list.append(event)
+
+	frogger.update(event_list)
+
+	for game_object in objects:
+		game_object.update()
 
 	pygame.display.update()
+
+	Time.update()
 
 pygame.quit()
 quit(0)
