@@ -1,6 +1,6 @@
 import pygame
 
-deltaTime = float(0.0)
+deltaTime = 0.0
 
 last_tick = pygame.time.get_ticks()
 
