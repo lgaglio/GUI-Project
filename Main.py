@@ -28,12 +28,15 @@ class Main:
 
 		self.exit_game = False
 
-		self.objects = [Frogger(self.game_display, self), ContinueMover(self.game_display, 1, 50)]
+		self.objects = [ContinueMover(self.game_display, 1, 50)]
+
+		self.objects.append(Frogger(self.game_display, self))
 
 		self.event_list = []
 
 	def run(self):
 		while not self.exit_game:
+			self.event_list = []
 
 			self.game_display.fill(self.WHITE)
 
