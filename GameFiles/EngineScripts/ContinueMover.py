@@ -12,8 +12,8 @@ class ContinueMover(GameObject):
 	3 = right
 	"""
 
-	def __init__(self, game_display, direction, speed):
-		super().__init__(game_display, (0, 0, 0))
+	def __init__(self, game_display, direction, speed, color=(0, 0, 0)):
+		super().__init__(game_display, color)
 		self.speed = speed
 		self.direction = direction
 
