@@ -1,17 +1,26 @@
 from abc import ABC, abstractclassmethod
+from GameFiles.EngineScripts.Vector2 import Vector2
+from GameFiles.EngineScripts.HitBox import HitBox
 
 
 class GameObject(ABC):
 
-	def __init__(self, game_display):
-		self.vector2 = [0, 0]
+	def __init__(self, game_display, color = (255, 255, 255)):
+		self.lead_vertex = Vector2(0,0)
+		self.size = Vector2(5, 5)
 		self.display = game_display
-		self.size = 20
-		self.color = (0, 0, 0)
+		self.color = color
+		self.hitbox = None
 
 	@abstractclassmethod
 	def update(self):
 		pass
 
 	def render(self):
-		self.display.fill(self.color, rect=[self.vector2[0], self.vector2[1], self.size, self.size])
+		self.display.fill(self.color, rect=[self.lead_vertex.x, self.lead_vertex.y, self.size.x, self.size.y])
+
+	def hitbox_check( self, second_hitbox ):
+		if self.hitbox is not None and type(self.hitbox ) == HitBox:
+			return self.hitbox.got_hit(second_hitbox)
+		else:
+			return False

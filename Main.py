@@ -4,7 +4,7 @@
 # https://www.youtube.com/watch?v=K5F-aGDIYaM&index=1&list=PL6gx4Cwl9DGAjkwJocj7vlc_mFU-4wXJq
 
 from GameFiles.EngineScripts.ContinueMover import *
-from GameFiles.EngineScripts.Frogger import *
+from GameFiles.EngineScripts.Froger import *
 
 
 class Main:
@@ -22,19 +22,21 @@ class Main:
 
 		self.game_display = pygame.display.set_mode((800, 600))
 
-		pygame.display.set_caption("Frogger")
+		pygame.display.set_caption("Froger")
 
 		pygame.display.update()
 
 		self.exit_game = False
 
-		self.objects = [ContinueMover(self.game_display, 1, 50)]
+		self.objects = [ContinueMover(self.game_display, 3, 50)]
 
-		self.objects.append(Frogger(self.game_display, self))
+		# noinspection PyTypeChecker
+		self.objects.append(Froger(self.game_display, self ) )
 
 		self.event_list = []
 
 	def run(self):
+
 		while not self.exit_game:
 			self.event_list = []
 
@@ -49,6 +51,11 @@ class Main:
 
 			for game_object in self.objects:
 				game_object.update()
+
+
+
+			for game_object in self.objects[0:self.objects.__len__() - 1]:
+				print(self.objects[-1].hitbox_check(game_object.hitbox))
 
 			pygame.display.update()
 
