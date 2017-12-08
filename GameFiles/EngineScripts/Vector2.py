@@ -55,5 +55,5 @@ class Vector2:
 			return False
 
 	def check_for_same(self, other):
-		if other != Vector2:
+		if type(other) != Vector2:
 			raise TypeError("Expected Vector2.")
