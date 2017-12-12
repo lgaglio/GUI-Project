@@ -1,4 +1,4 @@
-from GameFiles.EngineScripts.Vector2 import Vector2
+from GameFiles.EngineScripts.Data.Vector2 import Vector2
 
 
 class HitBox:
@@ -20,7 +20,6 @@ class HitBox:
 		in_between_x = False
 		in_between_y = False
 
-		# TODO: Complete collision check.
 		if second_hitbox.vertex1.x < self.vertex1.x < second_hitbox.vertex1.x + second_hitbox.vertex2.x \
 				or second_hitbox.vertex1.x < self.vertex1.x + self.vertex2.x < second_hitbox.vertex1.x + second_hitbox.vertex2.x:
 			in_between_x = True
