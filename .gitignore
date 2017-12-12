@@ -41,4 +41,4 @@ Thumbs.db
 .idea/
 *.pyc
 
-GameFiles.EngineScripts.TEST.py
+*.TEST.py
