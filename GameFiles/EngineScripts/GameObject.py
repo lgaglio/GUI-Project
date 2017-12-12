@@ -1,7 +1,7 @@
 from abc import ABC, abstractclassmethod
 
-from GameFiles.EngineScripts.HitBox import HitBox
-from GameFiles.EngineScripts.Vector2 import Vector2
+from GameFiles.EngineScripts.Data.HitBox import HitBox
+from GameFiles.EngineScripts.Data.Vector2 import Vector2
 
 
 class GameObject(ABC):
