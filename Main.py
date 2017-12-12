@@ -44,29 +44,13 @@ class Main:
 
 			self.game_display.fill(self.WHITE)
 
-			for event in pygame.event.get():
-				# Checks to see if the player wants to quit out of the game.
-				if event.type == pygame.QUIT:
-					self.exit_game = True
-				# Checks to see if that game over flag has been raised and the player pressed any key.
-				elif self.game_over and event.type == pygame.KEYDOWN:
-					# This is a massive hack for now.
-					pygame.quit()
+			self.create_event_list()
 
-					new__main = Main()
-
-					self.exit_game = True
-
-					new__main.run()
-					break
-				# Creates a new list that hass all the events in it for other classes to use.
-				else:
-					self.event_list.append(event)
 			# Checks to see if the game over flag has been raised. If not, proceed to update every object.
 			if not self.game_over:
-				for game_object in self.objects:
-					game_object.update()
+				self.update_objects()
 
+				self.render_objects()
 
 			# Checks to see if the game over flag has been raised and game exit hasn't
 			elif self.game_over and not self.exit_game:
@@ -74,16 +58,47 @@ class Main:
 				self.game_display.blit(screen_text, [400, 300])
 
 			# for game_object in self.objects[0:self.objects.__len__() - 1]:
-			for game_object_index in range(0, (self.objects.__len__()-1)):
-				if self.objects[game_object_index] != self.objects[-1] and self.objects[-1].hitbox_check( self.objects[game_object_index].hitbox ):
-					self.objects[-1].on_enter( self.objects[game_object_index] )
-			# Checks to see if the exit game flag has been raised. If not, proceed to update that display and update the Tme.deltaTime.
+			for game_object_index in range(0, (self.objects.__len__() - 1)):
+				if self.objects[game_object_index] != self.objects[-1] and self.objects[-1].hitbox_check(
+						self.objects[game_object_index].hitbox):
+					self.objects[-1].on_enter(self.objects[game_object_index])
+
+			# Checks to see if the exit game flag has been raised. If not, proceed to update that display and update
+			# the Tme.deltaTime.
 			if not self.exit_game:
 				pygame.display.update()
 
 				Time.update()
 
 		pygame.quit()
+
+	def create_event_list(self):
+		for event in pygame.event.get():
+			# Checks to see if the player wants to quit out of the game.
+			if event.type == pygame.QUIT:
+				self.exit_game = True
+			# Checks to see if that game over flag has been raised and the player pressed any key.
+			elif self.game_over and event.type == pygame.KEYDOWN:
+				# This is a massive hack for now.
+				pygame.quit()
+
+				new__main = Main()
+
+				self.exit_game = True
+
+				new__main.run()
+				break
+			# Creates a new list that has all the events in it for other classes to use.
+			else:
+				self.event_list.append(event)
+
+	def render_objects(self):
+		for game_object in self.objects:
+			game_object.render()
+
+	def update_objects(self):
+		for game_object in self.objects:
+			game_object.update()
 
 
 if __name__ == '__main__':
