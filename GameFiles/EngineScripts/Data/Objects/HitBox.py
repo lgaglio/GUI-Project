@@ -1,4 +1,4 @@
-from GameFiles.EngineScripts.Data.Vector2 import Vector2
+from GameFiles.EngineScripts.Data.Objects.Vector2 import Vector2
 
 
 class HitBox:

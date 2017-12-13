@@ -3,11 +3,17 @@
 #  Search for pygame, and install the latest version. For my project team mates, follow this tutorial:
 # https://www.youtube.com/watch?v=K5F-aGDIYaM&index=1&list=PL6gx4Cwl9DGAjkwJocj7vlc_mFU-4wXJq
 
-from GameFiles.EngineScripts.Frogger import *
-
+import pygame
+import GameFiles.EngineScripts.Data.Scripts.Time as Time
+from GameFiles.EngineScripts.Data.Objects.Moving.SelfMoving.Log import Log
+from GameFiles.EngineScripts.Data.Objects.Moving.Frogger import Frogger
+from GameFiles.EngineScripts.Data.Objects.Vector2 import Vector2
 
 class Main:
 	WHITE = (255, 255, 255)
+	BLACK = (0, 0, 0)
+	WATER = (16, 0, 64)
+	GRASS = (0, 212, 23)
 
 	def __init__(self):
 
@@ -19,7 +25,7 @@ class Main:
 		else:
 			print("Successful.")
 
-		self.game_display = pygame.display.set_mode((800, 600))
+		self.game_display = pygame.display.set_mode((608, 456))
 
 		pygame.display.set_caption("Frogger")
 
@@ -27,7 +33,7 @@ class Main:
 
 		self.exit_game = False
 
-		self.objects = [ContinueMover(self.game_display, 3, 50)]
+		self.objects = [Log(self.game_display, 3, Vector2(0, 10))]
 
 		# noinspection PyTypeChecker
 		self.objects.append(Frogger(self.game_display, self))
@@ -42,7 +48,7 @@ class Main:
 		while not self.exit_game:
 			self.event_list = []
 
-			self.game_display.fill(self.WHITE)
+			self.game_display.fill(self.BLACK)
 
 			self.create_event_list()
 

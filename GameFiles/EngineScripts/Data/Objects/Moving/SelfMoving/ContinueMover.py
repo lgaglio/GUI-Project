@@ -1,7 +1,6 @@
-from GameFiles.EngineScripts.Data import Time
+from GameFiles.EngineScripts.Data.Scripts import Time
 from GameFiles.EngineScripts.GameObject import GameObject
-from GameFiles.EngineScripts.Data.HitBox import HitBox
-
+from GameFiles.EngineScripts.Data.Objects.HitBox import HitBox
 
 global_speed = 10.0
 
@@ -17,6 +16,7 @@ class ContinueMover(GameObject):
 	2 = left
 	3 = right
 	"""
+
 	def __init__(self, game_display, direction, speed, color=(0, 0, 0)):
 		global global_speed
 		# Calls the super's init function to set it's things up.
@@ -68,6 +68,6 @@ class ContinueMover(GameObject):
 		global_speed += inc_by
 
 	@staticmethod
-	def get_speed(): # TODO: something
+	def get_speed():
 		global global_speed
 		return global_speed
